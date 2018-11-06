@@ -112,7 +112,7 @@ contract Patient {
 
     }
 
-    function createPatient(string optPersonAddress, string optPersonName) public {
+    function createNewPatient(string optPersonAddress, string optPersonName) public {
         Option memory newOption = Option({
             personAddress:optPersonAddress,
             personName:optPersonName
