@@ -20,7 +20,7 @@ pragma solidity ^0.4.17;
 contract Hospital{
     struct Option{
         string name;
-        // Examination[] examinations;
+        Examination[] examinations;
     }
 
     event ExaminationCreated(address examinAddress);
@@ -28,10 +28,10 @@ contract Hospital{
     address public examinatorHospital;
     address[] deployedExaminatorHospitals;
 
-    function createExamination(string examName, string examResult, int cost, bool status) public {
-        // examinatorHospital = new Examination(examName, examResult, cost, status);
-        // deployedExaminatorHospitals.push(examinatorHospital);
-        // emit ExaminationCreated(examinatorHospital);
+    function createExamination() public {
+        examinatorHospital = new Examination();
+        deployedExaminatorHospitals.push(examinatorHospital);
+        emit ExaminationCreated(examinatorHospital);
     }
 
     function getDeployedExaminations() public view returns(address[]){
@@ -40,19 +40,33 @@ contract Hospital{
 
 }
 
-// contract Examination{
+contract Examination{
 
-//     struct Option{
-//         string name;
-//         string result;
-//         int cost;
-//         bool status;
-//     }
+    struct Option{
+        string name;
+        string result;
+        int cost;
+        bool status;
+    }
     
-//     constructor(string examName, string examResult, int cost, bool status) public {
+    Option[] public options;
 
-//     }
-// }
+    constructor() public {
+
+    }
+
+    function createNewOption(string optName, string optResult, int optCost) public {
+        Option memory newOption = Option({
+            name:optName,
+            result:optResult,
+            cost:optCost,
+            status:false
+        });
+        options.push(newOption);
+    }
+
+    
+}
     
 // contract Poll1111{
 
