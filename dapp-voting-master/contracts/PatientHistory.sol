@@ -65,7 +65,46 @@ contract Examination{
         options.push(newOption);
     }
 
-    
+    // function getExamin() public view returns(string, string){
+    //     return (
+    //         for
+    //     );
+    // }
+    function getExamination(uint index) public view returns(string, string) {
+        return(
+            options[index].name,
+            options[index].result
+        );
+    }
+
+    // function getAllExamin() public view returns(string) {
+    //     string lst;
+    //     for (uint i = 0; i < options.length; i++) {
+    //         lst += 
+    //     }
+    // }
+}
+
+contract Patient {
+    struct Option {
+        string personAddress;
+        string personName;
+        // Examination[] examinations;
+    }
+
+    Option[] public lstPatients;
+
+    constructor() public {
+
+    }
+
+    function createPatient(string optPersonAddress, string optPersonName) public {
+        Option memory newOption = Option({
+            personAddress:optPersonAddress,
+            personName:optPersonName
+        });
+        lstPatients.push(newOption);
+    }
 }
     
 // contract Poll1111{
