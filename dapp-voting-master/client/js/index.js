@@ -68,6 +68,7 @@ const Dapp = {
       $(".node-status-gas-price").text(v);
     });
   },
+
   deployPollFactory: function() {
     var pollfactoryContract = Dapp.web3.eth.contract(
       JSON.parse(compiledFactory.interface)
@@ -92,6 +93,33 @@ const Dapp = {
       }
     );
   },
+
+  deployHospital :  function(){
+      var hospitalContract = Dapp.web3.eth.contract(
+          JSON.parse(compiledHospital.interface)
+      );
+
+      console.log("Deploying poll factory...");
+      hospitalContract.new(
+          {
+              from: Dapp.userAddress,
+              data: compiledFactory.bytecode,
+              gas: "4700000"
+          },
+          function(e, contract) {
+              if (typeof contract.address !== "undefined") {
+                  Dapp.pollFactoryAddress = contract.address;
+                  $("#pollFactoryAddress").text(contract.address);
+                  $("#addPoll").css("display", "block");
+                  $("#findAllPolls").css("display", "block");
+                  $("#viewPolls").css("display", "block");
+                  $("#deployPollFactory").css("display", "none");
+                  console.log("Hospital's address: " + contract.address);
+              }
+          }
+      );
+  },
+
   createNewPoll: function() {
     const pollQuestion = $("#pollQuestion").val();
     const options = [];
@@ -320,7 +348,7 @@ window.addEventListener("load", function() {
   } else {
     console.log("No Web3 Detected... using HTTP Provider");
     Dapp.web3 = new Web3(
-      new Web3.providers.HttpProvider("http://localhost:8545")
+      new Web3.providers.HttpProvider("http://localhost:7545")
     );
   }
 

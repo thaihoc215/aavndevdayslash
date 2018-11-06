@@ -80,7 +80,7 @@
               <label id="pollFactoryAddress" />
             </div>
             <div class="col-lg-2">
-              <button type="button" style="float: right;" class="btn btn-primary btn-sm" onclick="Dapp.deployPollFactory()" id="deployPollFactory">Deploy PollFactory</button>
+              <button type="button" style="float: right;" class="btn btn-primary btn-sm" onclick="Dapp.deployHospital()" id="deployPollFactory">Init Hospital</button>
             </div>
           </div>
           <div class="row" style="margin-top: 15px" id="pollArea">
@@ -100,18 +100,28 @@
             </div>
           </div>
 
+            <!--create new patience-->
           <div style="margin-top: 15px" id="pollDetail"></div>
           <div id="addPoll" style="display: none">
-            <h3>Create New Poll!</h3>
+            <h3>Create New Patience!</h3>
             <div class="row" style="margin-top: 15px">
+
               <div class="col-lg-4" id="poll">
                 <input type="text" id="pollQuestion" class="form-control" style="margin-top: 5px" placeholder="Question?">
               </div>
-              <div class="col-lg-4">
-                <div id="options"></div>
-                <input type="button" value="+ option" style="margin-top: 10px;  float: right" class="btn btn-primary" id="add" onclick="Dapp.addOption()"
-                />
+
+              <div class="col-lg-4" id="person">
+                <input type="text" id="personAddress" class="form-control" style="margin-top: 5px" placeholder="Person Name">
+                <input type="text" id="personName" class="form-control" style="margin-top: 5px" placeholder="Person Address">
               </div>
+
+
+              <!--<div class="col-lg-4">-->
+                <!--<div id="options"></div>-->
+                <!--<input type="button" value="+ option" style="margin-top: 10px;  float: right" class="btn btn-primary" id="add" onclick="Dapp.addOption()"-->
+                <!--/>-->
+              <!--</div>-->
+                <!---->
               <div class="col-lg-4">
                 <button onclick="Dapp.createNewPoll()" style="margin-top: 5px;  float: right" class="btn btn-primary">Submit</button>
               </div>
@@ -188,6 +198,7 @@
     crossorigin="anonymous"></script>
   <script src="compiled-contracts/Poll.js"></script>
   <script src="compiled-contracts/PollFactory.js"></script>
+  <script src="compiled-contracts/Hospital.js"></script>
   <script src="js/doT.min.js"></script>
   <script src="js/index.js"></script>
 </body>
