@@ -1,4 +1,5 @@
 pragma solidity ^0.4.17;
+// import "github.com/Arachnid/solidity-stringutils/strings.sol";
 // contract PollFactory111111{
 
 //     event PollCreated1111(address pollAddress);
@@ -104,6 +105,25 @@ contract Patient {
             personName:optPersonName
         });
         lstPatients.push(newOption);
+    }
+
+    // function getAllPatients() public view returns(string) {
+    //     string lst = new string;
+    //     string comma = new string(";");
+    //     for (uint i = 0; i < lstPatients.length; i++) {
+    //         if (i > 0 || i < lstPatients.length){
+    //             lst += lst.toSlice().concat(comma.toSlice());
+    //         }
+    //         lst += lst.toSlice().concat(lstPatients[i].personAddress.toSlice());
+    //     }
+    //     return (lst);
+    // }
+
+    function getPatient(uint idx) public view returns(string, string) {
+        return (
+            lstPatients[idx].personAddress,
+            lstPatients[idx].personName
+        );
     }
 }
     
