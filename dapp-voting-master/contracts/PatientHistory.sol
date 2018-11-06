@@ -38,8 +38,8 @@ contract Hospital{
         emit ExaminationCreated(examinatorHospital);
     }
 
-    function createPatient() public {
-        patient = new Patient();
+    function createPatient(string name, string addr) public {
+        patient = new Patient(name, addr);
         deployedPatientHospitals.push(patient);
         emit PatientCreated(patient);
     }
@@ -100,26 +100,13 @@ contract Examination{
 }
 
 contract Patient {
-    struct Option {
-        string personAddress;
-        string personName;
-        // Examination[] examinations;
+    string public name;
+    string public addr;
+
+    constructor(string initName, string initAddress) public {
+        name = initName;
+        addr = initAddress;
     }
-
-    Option[] public lstPatients;
-
-    constructor() public {
-
-    }
-
-    function createNewPatient(string optPersonAddress, string optPersonName) public {
-        Option memory newOption = Option({
-            personAddress:optPersonAddress,
-            personName:optPersonName
-        });
-        lstPatients.push(newOption);
-    }
-
     // function getAllPatients() public view returns(string) {
     //     string lst = new string;
     //     string comma = new string(";");
@@ -132,12 +119,6 @@ contract Patient {
     //     return (lst);
     // }
 
-    function getPatient(uint idx) public view returns(string, string) {
-        return (
-            lstPatients[idx].personAddress,
-            lstPatients[idx].personName
-        );
-    }
 }
     
 // contract Poll1111{
