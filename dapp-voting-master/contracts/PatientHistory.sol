@@ -25,9 +25,12 @@ contract Hospital{
     }
 
     event ExaminationCreated(address examinAddress);
+    event PatientCreated(address patientAddress);
 
     address public examinatorHospital;
+    address public patient;
     address[] deployedExaminatorHospitals;
+    address[] deployedPatientHospitals;
 
     function createExamination() public {
         examinatorHospital = new Examination();
@@ -35,8 +38,18 @@ contract Hospital{
         emit ExaminationCreated(examinatorHospital);
     }
 
+    function createPatient() public {
+        patient = new Patient();
+        deployedPatientHospitals.push(patient);
+        emit PatientCreated(patient);
+    }
+
     function getDeployedExaminations() public view returns(address[]){
         return deployedExaminatorHospitals;
+    }
+
+    function getDeployedPatients() public view returns(address[]){
+        return deployedPatientHospitals;
     }
 
 }
